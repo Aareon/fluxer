@@ -80,6 +80,7 @@ export const useNagbarConditions = (): NagbarConditions => {
 	}, [nagbarState.forceUpdateAvailable]);
 
 	const shouldShowDesktopNotification = (() => {
+		if (!nagbarState.isHydrated()) return false;
 		if (!NotificationUtils.hasNotification()) return false;
 		if (typeof Notification !== 'undefined') {
 			if (Notification.permission === 'granted') return false;

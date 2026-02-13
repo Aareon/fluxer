@@ -75,6 +75,8 @@ export type NagbarToggleKey = Exclude<
 >;
 
 export class NagbarStore implements NagbarSettings {
+	hydrated = false;
+
 	iosInstallDismissed = false;
 	pwaInstallDismissed = false;
 	pushNotificationDismissed = false;
@@ -144,10 +146,15 @@ export class NagbarStore implements NagbarSettings {
 			'invitesDisabledDismissed',
 			'guildMembershipCtaDismissed',
 		]);
+		this.hydrated = true;
 	}
 
 	getIosInstallDismissed(): boolean {
 		return this.iosInstallDismissed;
+	}
+
+	isHydrated(): boolean {
+		return this.hydrated;
 	}
 
 	getPwaInstallDismissed(): boolean {
